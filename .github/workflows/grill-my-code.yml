@@ -23,3 +23,4 @@ jobs:
           post_issue: "true"
           num_questions: "50"
           include_patterns: "**/*.cpp,**/*.h"
+          additional_context: "The questions should be targeted at a second-year college student taking a course in data structures and algorithms. The questions should focus on verifying a student's understanding and comprehension of the generated code."
