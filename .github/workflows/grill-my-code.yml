@@ -23,5 +23,5 @@ jobs:
           post_issue: "true"
           num_questions: "50"
           include_patterns: |
-            **/*.cpp
-            **/*.h
+            **/**/*.cpp
+            **/**/*.h
