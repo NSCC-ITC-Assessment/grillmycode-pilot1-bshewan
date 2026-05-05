@@ -1,9 +1,9 @@
 ## Grill My Code
 
-> **Generated:** 2026-05-05 12:44:38 UTC
-> **Commits reviewed:** `22df531` → `51c7794`
+> **Generated:** 2026-05-05 12:54:08 UTC
+> **Commits reviewed:** `22df531` → `f60f6f7`
 
-> **Files assessed:** `src/main.cpp`
+> **Files assessed:** `src/LinkedList.cpp`, `src/LinkedList.h`, `src/main.cpp`
 
 ---
 
@@ -11,320 +11,388 @@
 
 _These questions check your knowledge of what specific parts of your code do._
 
-1. **`src/main.cpp`**
+1. **`src/LinkedList.cpp`**
    ```
-   #include <iostream>
+   head = nullptr;
    ```
-   What is the purpose of including `<iostream>` at the top of your file?
+   What does the constructor for `LinkedList` do to the `head` pointer?
 
-2. **`src/main.cpp`**
+2. **`src/LinkedList.cpp`**
    ```
-   using namespace std;
+   BugNode* next = current->next;
+   delete current;
+   current = next;
    ```
-   What effect does `using namespace std;` have on subsequent code?
+   What is happening to each node within the `LinkedList` destructor?
 
-3. **`src/main.cpp`**
+3. **`src/LinkedList.cpp`**
    ```
-   int main() {
+   BugNode* node = new BugNode;
+   node->data = bug;
+   node->next = nullptr;
    ```
-   What is the role of the `main` function in a C++ program?
+   What is being created each time `addBug` is called?
 
-4. **`src/main.cpp`**
+4. **`src/LinkedList.cpp`**
    ```
-   cout << "Hello World!" << endl;
+   if (head == nullptr) {
+       head = node;
+       return;
+   }
    ```
-   What does this line output to the console?
+   What does the `addBug` method do if the list is empty?
 
-5. **`src/main.cpp`**
+5. **`src/LinkedList.cpp`**
    ```
-   return 0;
+   while (current != nullptr && current->data.id != bugId) {
+       prev = current;
+       current = current->next;
+   }
    ```
-   What does the `return 0;` statement signify at the end of `main`?
+   What condition causes the loop in `deleteBug` to stop?
 
-6. **`src/main.cpp`**
+6. **`src/LinkedList.cpp`**
    ```
-   cout << "Hello World!" << endl;
+   if (prev == nullptr) {
+       head = current->next;
+   }
    ```
-   What is the function of `endl` in this output statement?
+   What happens if `deleteBug` finds the bug to delete at the head of the list?
 
-7. **`src/main.cpp`**
+7. **`src/LinkedList.cpp`**
    ```
-   cout << "Hello World!" << endl;
+   if (current->data.id == bugId) {
+       return &current->data;
+   }
    ```
-   What type of operator is `<<` in this context?
+   What does `searchBug` return if it finds a bug with a matching ID?
 
-8. **`src/main.cpp`**
+8. **`src/LinkedList.cpp`**
    ```
-   int main() {
+   for (int i = 0; i < current->data.commentCount; i++) {
+       std::cout << "Comment " << i + 1 << ": "
+                 << current->data.comments[i] << std::endl;
+   }
    ```
-   What type of value does `main` return?
+   What does the loop in `display` output for each bug?
 
-9. **`src/main.cpp`**
+9. **`src/LinkedList.cpp`**
    ```
-   cout
+   while (current->next != nullptr) {
+       if (current->data.id > current->next->data.id) {
+           Bug temp = current->data;
+           current->data = current->next->data;
+           current->next->data = temp;
+           swapped = true;
+       }
+       current = current->next;
+   }
    ```
-   What is `cout` and where is it defined?
+   What is the purpose of the inner loop in `sortById`?
 
-10. **`src/main.cpp`**
+10. **`src/LinkedList.cpp`**
     ```
-    #include <iostream>
+    if (!head) return;
     ```
-    Which library does `#include <iostream>` make available for your code?
+    What does `sortById` do if the list is empty?
 
-11. **`src/main.cpp`**
+11. **`src/LinkedList.cpp`**
     ```
-    using namespace std;
+    BugNode* current = head;
+    while (current != nullptr) {
+        file << current->data.id << "|"
     ```
-    How does `using namespace std;` affect the way you reference `cout`?
+    What does `saveToFile` do with each node in the list?
 
-12. **`src/main.cpp`**
+12. **`src/LinkedList.h`**
     ```
-    return 0;
+    std::string comments[10];
+    int commentCount;
     ```
-    What does the operating system interpret when `main` returns 0?
+    What is the role of the `comments` array and `commentCount` in the `Bug` struct?
 
+13. **`src/main.cpp`**
+    ```
+    LinkedList list;
+    ```
+    What object is being created at the start of `main`?
+
+14. **`src/main.cpp`**
+    ```
+    list.loadFromFile("../docs/bugFile.txt");
+    ```
+    What does the call to `loadFromFile` do at the beginning of `main`?
+
+15. **`src/main.cpp`**
+    ```
+    Bug b1 = {1, "2026-04-24", "Crash", "App crashes", "OPEN", "HIGH", "Needs fix"};
+    ```
+    What does this initialization assign to `b1`?
+
+16. **`src/main.cpp`**
+    ```
+    list.addBug(b1);
+    ```
+    What effect does calling `addBug(b1)` have on the linked list?
+
+17. **`src/main.cpp`**
+    ```
+    list.sortById();
+    ```
+    What is the expected result after this line is executed?
+
+18. **`src/main.cpp`**
+    ```
+    list.deleteBug(3);
+    ```
+    What happens to the bug with ID 3 after this line in `main`?
+
+19. **`src/main.cpp`**
+    ```
+    Bug* found = list.searchBug(2);
+    ```
+    What is stored in `found` after this call?
+
+20. **`src/main.cpp`**
+    ```
+    list.saveToFile("../output/bugFile.txt");
+    ```
+    What does this statement do at the end of `main`?
 
 ## Comprehension
 
 _These questions ask you to explain why or how particular choices in your code work the way they do._
 
-13. **`src/main.cpp`**
+21. **`src/LinkedList.cpp`**
     ```
-    #include <iostream>
+    while (current->next != nullptr) {
+        current = current->next;
+    }
     ```
-    Why is `<iostream>` included rather than another header like `<stdio.h>`?
+    Why is this loop used in `addBug` instead of inserting at the head?
 
-14. **`src/main.cpp`**
+22. **`src/LinkedList.cpp`**
     ```
-    using namespace std;
+    BugNode* prev = nullptr;
     ```
-    Why might you choose to use `using namespace std;` instead of prefixing `cout` and `endl` with `std::`?
+    Why is `prev` initialized to `nullptr` at the start of `deleteBug`?
 
-15. **`src/main.cpp`**
+23. **`src/LinkedList.cpp`**
     ```
-    int main() {
+    if (current == nullptr) {
+        return;
+    }
     ```
-    Why must the `main` function be present in every C++ program?
+    Why does `deleteBug` immediately return if no matching bug is found?
 
-16. **`src/main.cpp`**
+24. **`src/LinkedList.cpp`**
     ```
-    cout << "Hello World!" << endl;
+    while (current != nullptr) {
+        if (current->data.id == bugId) {
+            return &current->data;
+        }
+        current = current->next;
+    }
     ```
-    Why is `endl` used here instead of `'\n'` for a newline?
+    Why does `searchBug` return a pointer rather than a copy of the bug?
 
-17. **`src/main.cpp`**
+25. **`src/LinkedList.cpp`**
     ```
-    return 0;
+    for (int i = 0; i < current->data.commentCount; i++) {
+        std::cout << "Comment " << i + 1 << ": "
+                  << current->data.comments[i] << std::endl;
+    }
     ```
-    Why is `return 0;` considered standard practice at the end of the `main` function?
+    Why is `commentCount` used as the loop bound instead of the fixed comment array size?
 
-18. **`src/main.cpp`**
+26. **`src/LinkedList.cpp`**
     ```
-    cout << "Hello World!" << endl;
+    Bug temp = current->data;
+    current->data = current->next->data;
+    current->next->data = temp;
     ```
-    How does the chaining of `<<` operators allow you to build the output stream?
+    Why does the sorting algorithm swap `Bug` structs instead of rearranging the nodes themselves?
 
-19. **`src/main.cpp`**
+27. **`src/LinkedList.cpp`**
     ```
-    int main() {
-    ```
-    Why is the return type of `main` `int` instead of `void`?
+    while (getline(ss, comment, '|')) {
+        if (comment.empty()) break;
 
-20. **`src/main.cpp`**
+        if (bug.commentCount < 10) {
+            bug.comments[bug.commentCount++] = comment;
+        }
+    }
     ```
-    #include <iostream>
-    ```
-    Why do you need to include the header for input and output streams when using `cout`?
+    Why is there a check for `bug.commentCount < 10` during comment loading?
 
-21. **`src/main.cpp`**
+28. **`src/LinkedList.cpp`**
     ```
-    cout << "Hello World!" << endl;
+    file << current->data.id << "|"
+         << current->data.date << "|"
+         << current->data.briefDesc << "|"
+         << current->data.detailedDesc << "|"
+         << current->data.status << "|"
+         << current->data.severity << "|";
     ```
-    How does the output stream know where to send the characters?
+    Why are bug fields written to the file separated by `|`?
 
-22. **`src/main.cpp`**
+29. **`src/LinkedList.cpp`**
     ```
-    int main() {
+    file << "||\n";
     ```
-    How does the signature of `main` relate to program startup in C++?
+    Why does `saveToFile` include `"||\n"` after writing comments?
 
-23. **`src/main.cpp`**
+30. **`src/LinkedList.h`**
     ```
-    cout << "Hello World!" << endl;
+    BugNode* head = nullptr;
     ```
-    How does this statement ensure that the string is immediately flushed to the console?
-
-24. **`src/main.cpp`**
-    ```
-    using namespace std;
-    ```
-    Why might `using namespace std;` lead to naming conflicts in larger programs?
-
-
-## Analysis
-
-_These questions require tracing execution, reasoning about logic, or identifying issues._
-
-25. **`src/main.cpp`**
-    ```
-    cout << "Hello World!" << endl;
-    ```
-    What would happen if `endl` were omitted from this statement?
-
-26. **`src/main.cpp`**
-    ```
-    using namespace std;
-    ```
-    What would the code look like if `using namespace std;` were not included?
-
-27. **`src/main.cpp`**
-    ```
-    #include <iostream>
-    ```
-    What error would you encounter if `<iostream>` were not included and you tried to use `cout`?
-
-28. **`src/main.cpp`**
-    ```
-    int main() {
-    ```
-    What would happen if you changed the return type of `main` from `int` to `void`?
-
-29. **`src/main.cpp`**
-    ```
-    cout << "Hello World!" << endl;
-    ```
-    If you replaced `cout` with `cerr`, where would the output appear?
-
-30. **`src/main.cpp`**
-    ```
-    return 0;
-    ```
-    How would the behavior of your program change if you returned a value other than 0 from `main`?
+    Why is `head` defined as a private member of the `LinkedList` class?
 
 31. **`src/main.cpp`**
     ```
-    cout << "Hello World!" << endl;
+    list.display();
     ```
-    How would the output change if you replaced `"Hello World!"` with an integer value?
+    Why is `display` called after sorting and deleting operations?
 
 32. **`src/main.cpp`**
     ```
-    cout << "Hello World!" << endl;
+    if (found) {
+        std::cout << "\nFound Bug ID 2:\n";
+        std::cout << found->briefDesc << std::endl;
+    }
     ```
-    What would happen if you tried to output a variable that wasn't defined?
+    Why is there a conditional check on `found` before printing bug information?
 
 33. **`src/main.cpp`**
     ```
-    cout << "Hello World!" << endl;
+    Bug b1 = {1, "2026-04-24", "Crash", "App crashes", "OPEN", "HIGH", "Needs fix"};
     ```
-    How does the order of operands affect the output when using `<<` with `cout`?
+    Why are bugs initialized using brace-enclosed lists in `main`?
 
-34. **`src/main.cpp`**
+34. **`src/LinkedList.cpp`**
     ```
-    int main() {
-    ```
-    What happens if the `main` function is missing from your C++ file?
+    std::ifstream file(filename);
 
-35. **`src/main.cpp`**
+    if (!file) {
+        std::cout << "File not found.\n";
+        return;
+    }
     ```
-    cout << "Hello World!" << endl;
-    ```
-    What would happen if you replaced `cout` with `cin` on this line?
+    Why is there a check for file existence before loading in `loadFromFile`?
 
-36. **`src/main.cpp`**
+35. **`src/LinkedList.cpp`**
     ```
-    #include <iostream>
+    std::ofstream file(filename);
     ```
-    If you included `<iostream>` but didn't use any input/output statements, how would that affect compilation?
+    Why does `saveToFile` create a new output file stream each time it's called?
 
-37. **`src/main.cpp`**
-    ```
-    using namespace std;
-    ```
-    How might the inclusion of `using namespace std;` affect code readability for someone unfamiliar with the standard library?
+## Analysis
 
-38. **`src/main.cpp`**
-    ```
-    int main() {
-    ```
-    If you added parameters to `main`, such as `int main(int argc, char* argv[])`, what extra capabilities would this provide?
+_These questions require you to trace execution, reason about logic, or identify possible issues._
 
-39. **`src/main.cpp`**
+36. **`src/LinkedList.cpp`**
     ```
-    cout << "Hello World!" << endl;
+    delete current;
     ```
-    If an exception occurred during this output statement, how would your program handle it?
+    What could happen if `deleteBug` is called with an ID not present in the list?
 
-40. **`src/main.cpp`**
+37. **`src/LinkedList.cpp`**
     ```
-    cout << "Hello World!" << endl;
+    Bug* LinkedList::searchBug(int bugId)
     ```
-    What happens if you chain multiple `<<` operators in a single statement?
+    What happens if you call `searchBug` on an empty list?
 
+38. **`src/LinkedList.cpp`**
+    ```
+    for (int i = 0; i < current->data.commentCount; i++) {
+        std::cout << "Comment " << i + 1 << ": "
+                  << current->data.comments[i] << std::endl;
+    }
+    ```
+    How would the output change if `commentCount` is incorrectly set higher than the actual number of comments?
+
+39. **`src/LinkedList.cpp`**
+    ```
+    while (getline(ss, comment, '|')) {
+        if (comment.empty()) break;
+    ```
+    What happens if a bug in the file has no comments between the last field and the `||` marker?
+
+40. **`src/LinkedList.cpp`**
+    ```
+    BugNode* node = new BugNode;
+    node->data = bug;
+    node->next = nullptr;
+    ```
+    What happens if `addBug` is called repeatedly without deleting the list?
+
+41. **`src/LinkedList.cpp`**
+    ```
+    while (current->next != nullptr) {
+        if (current->data.id > current->next->data.id) {
+    ```
+    How does the sort algorithm behave if IDs are already sorted?
+
+42. **`src/LinkedList.cpp`**
+    ```
+    while (current->next != nullptr) {
+        if (current->data.status > current->next->data.status) {
+    ```
+    How does `sortByStatus` determine the order of bugs?
+
+43. **`src/LinkedList.cpp`**
+    ```
+    if (!head) return;
+    ```
+    What is the effect of calling `sortById` or `sortByStatus` on a single-node list?
+
+44. **`src/LinkedList.cpp`**
+    ```
+    file << current->data.id << "|"
+    ```
+    What could happen if a bug's field contains the `|` character?
+
+45. **`src/LinkedList.cpp`**
+    ```
+    bug.comments[bug.commentCount++] = comment;
+    ```
+    What happens if a bug in the file has more than 10 comments?
+
+46. **`src/LinkedList.cpp`**
+    ```
+    head = nullptr;
+    ```
+    What is the effect of setting `head` to nullptr in the destructor?
+
+47. **`src/main.cpp`**
+    ```
+    Bug* found = list.searchBug(2);
+    ```
+    What value will `found` have if no bug with ID 2 exists?
+
+48. **`src/main.cpp`**
+    ```
+    list.saveToFile("../output/bugFile.txt");
+    ```
+    What will the output file contain if the list is empty when `saveToFile` is called?
+
+49. **`src/main.cpp`**
+    ```
+    list.deleteBug(3);
+    ```
+    What happens if you try to delete a bug that was already deleted in a previous operation?
 
 ## Evaluation
 
 _These questions ask you to judge design decisions, tradeoffs, or rationale._
 
-41. **`src/main.cpp`**
+50. **`src/LinkedList.cpp`**
     ```
-    using namespace std;
+    Bug temp = current->data;
+    current->data = current->next->data;
+    current->next->data = temp;
     ```
-    What are the potential risks and benefits of using `using namespace std;` globally in your source file?
-
-42. **`src/main.cpp`**
-    ```
-    cout << "Hello World!" << endl;
-    ```
-    Why might you choose to use `cout` and `endl` for output rather than C-style functions like `printf`?
-
-43. **`src/main.cpp`**
-    ```
-    #include <iostream>
-    ```
-    How does including `<iostream>` affect portability and compatibility across different compilers?
-
-44. **`src/main.cpp`**
-    ```
-    int main() {
-    ```
-    Why do you think the C++ standard requires `main` to return an integer, and what might be the reasoning behind it?
-
-45. **`src/main.cpp`**
-    ```
-    cout << "Hello World!" << endl;
-    ```
-    What are the advantages of using stream-based output versus direct system calls for printing?
-
-46. **`src/main.cpp`**
-    ```
-    return 0;
-    ```
-    Why is explicitly returning 0 from `main` considered good practice, even though some compilers don't require it?
-
-47. **`src/main.cpp`**
-    ```
-    using namespace std;
-    ```
-    In what situations would you avoid using `using namespace std;` in your code, and why?
-
-48. **`src/main.cpp`**
-    ```
-    cout << "Hello World!" << endl;
-    ```
-    What are the trade-offs between using `endl` and `'\n'` for line breaks in output?
-
-49. **`src/main.cpp`**
-    ```
-    int main() {
-    ```
-    If you were writing code for embedded systems, how might the structure of your `main` function differ?
-
-50. **`src/main.cpp`**
-    ```
-    #include <iostream>
-    ```
-    How does the choice of including specific headers impact compile-time and binary size in simple programs like this?
+    What are the implications of sorting by swapping bug data rather than linked list nodes in terms of performance and memory usage?
 
 ---
 
