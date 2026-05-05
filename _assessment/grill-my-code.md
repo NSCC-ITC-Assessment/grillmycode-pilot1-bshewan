@@ -1,7 +1,7 @@
 ## Grill My Code
 
-> **Generated:** 2026-05-05 12:54:08 UTC
-> **Commits reviewed:** `22df531` → `f60f6f7`
+> **Generated:** 2026-05-05 13:15:25 UTC
+> **Commits reviewed:** `22df531` → `f254d0b`
 
 > **Files assessed:** `src/LinkedList.cpp`, `src/LinkedList.h`, `src/main.cpp`
 
@@ -15,33 +15,33 @@ _These questions check your knowledge of what specific parts of your code do._
    ```
    head = nullptr;
    ```
-   What does the constructor for `LinkedList` do to the `head` pointer?
-
+   What does the `LinkedList` constructor initialize when a new `LinkedList` object is created?
 2. **`src/LinkedList.cpp`**
    ```
-   BugNode* next = current->next;
-   delete current;
-   current = next;
+   BugNode* current = head;
+   while (current != nullptr) {
+       BugNode* next = current->next;
+       delete current;
+       current = next;
+   }
    ```
-   What is happening to each node within the `LinkedList` destructor?
-
+   What happens to the memory allocated for nodes when the `LinkedList` destructor is called?
 3. **`src/LinkedList.cpp`**
-   ```
-   BugNode* node = new BugNode;
-   node->data = bug;
-   node->next = nullptr;
-   ```
-   What is being created each time `addBug` is called?
-
-4. **`src/LinkedList.cpp`**
    ```
    if (head == nullptr) {
        head = node;
        return;
    }
    ```
-   What does the `addBug` method do if the list is empty?
-
+   What condition causes `addBug` to immediately set `head` and return?
+4. **`src/LinkedList.cpp`**
+   ```
+   while (current->next != nullptr) {
+       current = current->next;
+   }
+   current->next = node;
+   ```
+   Where is a new bug added within the list when `addBug` is called and the list is not empty?
 5. **`src/LinkedList.cpp`**
    ```
    while (current != nullptr && current->data.id != bugId) {
@@ -49,227 +49,56 @@ _These questions check your knowledge of what specific parts of your code do._
        current = current->next;
    }
    ```
-   What condition causes the loop in `deleteBug` to stop?
-
+   What is the purpose of this loop in the `deleteBug` method?
 6. **`src/LinkedList.cpp`**
+   ```
+   if (current == nullptr) {
+       return;
+   }
+   ```
+   What does `deleteBug` do if no node with the given `bugId` is found?
+7. **`src/LinkedList.cpp`**
    ```
    if (prev == nullptr) {
        head = current->next;
+   }else {
+       prev->next = current->next;
    }
    ```
-   What happens if `deleteBug` finds the bug to delete at the head of the list?
-
-7. **`src/LinkedList.cpp`**
+   How is the linked list adjusted when deleting a node at the head versus elsewhere?
+8. **`src/LinkedList.cpp`**
    ```
    if (current->data.id == bugId) {
        return &current->data;
    }
    ```
-   What does `searchBug` return if it finds a bug with a matching ID?
-
-8. **`src/LinkedList.cpp`**
-   ```
-   for (int i = 0; i < current->data.commentCount; i++) {
-       std::cout << "Comment " << i + 1 << ": "
-                 << current->data.comments[i] << std::endl;
-   }
-   ```
-   What does the loop in `display` output for each bug?
-
+   What value is returned by `searchBug` when a bug with the specified ID is found?
 9. **`src/LinkedList.cpp`**
    ```
-   while (current->next != nullptr) {
-       if (current->data.id > current->next->data.id) {
-           Bug temp = current->data;
-           current->data = current->next->data;
-           current->next->data = temp;
-           swapped = true;
-       }
-       current = current->next;
-   }
+   std::cout << "ID: " << current->data.id << std::endl;
    ```
-   What is the purpose of the inner loop in `sortById`?
-
+   Which bug field is printed first in the `display` method?
 10. **`src/LinkedList.cpp`**
-    ```
-    if (!head) return;
-    ```
-    What does `sortById` do if the list is empty?
-
-11. **`src/LinkedList.cpp`**
-    ```
-    BugNode* current = head;
-    while (current != nullptr) {
-        file << current->data.id << "|"
-    ```
-    What does `saveToFile` do with each node in the list?
-
-12. **`src/LinkedList.h`**
-    ```
-    std::string comments[10];
-    int commentCount;
-    ```
-    What is the role of the `comments` array and `commentCount` in the `Bug` struct?
-
-13. **`src/main.cpp`**
-    ```
-    LinkedList list;
-    ```
-    What object is being created at the start of `main`?
-
-14. **`src/main.cpp`**
-    ```
-    list.loadFromFile("../docs/bugFile.txt");
-    ```
-    What does the call to `loadFromFile` do at the beginning of `main`?
-
-15. **`src/main.cpp`**
-    ```
-    Bug b1 = {1, "2026-04-24", "Crash", "App crashes", "OPEN", "HIGH", "Needs fix"};
-    ```
-    What does this initialization assign to `b1`?
-
-16. **`src/main.cpp`**
-    ```
-    list.addBug(b1);
-    ```
-    What effect does calling `addBug(b1)` have on the linked list?
-
-17. **`src/main.cpp`**
-    ```
-    list.sortById();
-    ```
-    What is the expected result after this line is executed?
-
-18. **`src/main.cpp`**
-    ```
-    list.deleteBug(3);
-    ```
-    What happens to the bug with ID 3 after this line in `main`?
-
-19. **`src/main.cpp`**
-    ```
-    Bug* found = list.searchBug(2);
-    ```
-    What is stored in `found` after this call?
-
-20. **`src/main.cpp`**
-    ```
-    list.saveToFile("../output/bugFile.txt");
-    ```
-    What does this statement do at the end of `main`?
-
-## Comprehension
-
-_These questions ask you to explain why or how particular choices in your code work the way they do._
-
-21. **`src/LinkedList.cpp`**
-    ```
-    while (current->next != nullptr) {
-        current = current->next;
-    }
-    ```
-    Why is this loop used in `addBug` instead of inserting at the head?
-
-22. **`src/LinkedList.cpp`**
-    ```
-    BugNode* prev = nullptr;
-    ```
-    Why is `prev` initialized to `nullptr` at the start of `deleteBug`?
-
-23. **`src/LinkedList.cpp`**
-    ```
-    if (current == nullptr) {
-        return;
-    }
-    ```
-    Why does `deleteBug` immediately return if no matching bug is found?
-
-24. **`src/LinkedList.cpp`**
-    ```
-    while (current != nullptr) {
-        if (current->data.id == bugId) {
-            return &current->data;
-        }
-        current = current->next;
-    }
-    ```
-    Why does `searchBug` return a pointer rather than a copy of the bug?
-
-25. **`src/LinkedList.cpp`**
     ```
     for (int i = 0; i < current->data.commentCount; i++) {
         std::cout << "Comment " << i + 1 << ": "
                   << current->data.comments[i] << std::endl;
     }
     ```
-    Why is `commentCount` used as the loop bound instead of the fixed comment array size?
-
-26. **`src/LinkedList.cpp`**
+    What determines how many comments are printed for each bug in the `display` method?
+11. **`src/LinkedList.cpp`**
+    ```
+    if (!head) return;
+    ```
+    What check is performed at the beginning of both `sortById` and `sortByStatus`?
+12. **`src/LinkedList.cpp`**
     ```
     Bug temp = current->data;
     current->data = current->next->data;
     current->next->data = temp;
     ```
-    Why does the sorting algorithm swap `Bug` structs instead of rearranging the nodes themselves?
-
-27. **`src/LinkedList.cpp`**
-    ```
-    while (getline(ss, comment, '|')) {
-        if (comment.empty()) break;
-
-        if (bug.commentCount < 10) {
-            bug.comments[bug.commentCount++] = comment;
-        }
-    }
-    ```
-    Why is there a check for `bug.commentCount < 10` during comment loading?
-
-28. **`src/LinkedList.cpp`**
-    ```
-    file << current->data.id << "|"
-         << current->data.date << "|"
-         << current->data.briefDesc << "|"
-         << current->data.detailedDesc << "|"
-         << current->data.status << "|"
-         << current->data.severity << "|";
-    ```
-    Why are bug fields written to the file separated by `|`?
-
-29. **`src/LinkedList.cpp`**
-    ```
-    file << "||\n";
-    ```
-    Why does `saveToFile` include `"||\n"` after writing comments?
-
-30. **`src/LinkedList.h`**
-    ```
-    BugNode* head = nullptr;
-    ```
-    Why is `head` defined as a private member of the `LinkedList` class?
-
-31. **`src/main.cpp`**
-    ```
-    list.display();
-    ```
-    Why is `display` called after sorting and deleting operations?
-
-32. **`src/main.cpp`**
-    ```
-    if (found) {
-        std::cout << "\nFound Bug ID 2:\n";
-        std::cout << found->briefDesc << std::endl;
-    }
-    ```
-    Why is there a conditional check on `found` before printing bug information?
-
-33. **`src/main.cpp`**
-    ```
-    Bug b1 = {1, "2026-04-24", "Crash", "App crashes", "OPEN", "HIGH", "Needs fix"};
-    ```
-    Why are bugs initialized using brace-enclosed lists in `main`?
-
-34. **`src/LinkedList.cpp`**
+    What operation is performed when two bugs are out of order during sorting?
+13. **`src/LinkedList.cpp`**
     ```
     std::ifstream file(filename);
 
@@ -278,121 +107,357 @@ _These questions ask you to explain why or how particular choices in your code w
         return;
     }
     ```
-    Why is there a check for file existence before loading in `loadFromFile`?
-
-35. **`src/LinkedList.cpp`**
+    What happens if the file specified in `loadFromFile` cannot be opened?
+14. **`src/LinkedList.cpp`**
     ```
-    std::ofstream file(filename);
+    getline(ss, bug.date, '|');
+    getline(ss, bug.briefDesc, '|');
     ```
-    Why does `saveToFile` create a new output file stream each time it's called?
+    Which bug fields are read from each line of the file in `loadFromFile` after reading `id`?
+15. **`src/LinkedList.cpp`**
+    ```
+    if (bug.commentCount < 10) {
+        bug.comments[bug.commentCount++] = comment;
+    }
+    ```
+    What prevents more than 10 comments from being added to a bug when loading from file?
+16. **`src/LinkedList.cpp`**
+    ```
+    file << current->data.id << "|"
+         << current->data.date << "|"
+         ...
+         << "||\n";
+    ```
+    How are bug fields separated in the output file when using `saveToFile`?
+17. **`src/LinkedList.cpp`**
+    ```
+    file.close();
+    ```
+    What happens at the end of both `loadFromFile` and `saveToFile`?
+18. **`src/LinkedList.h`**
+    ```
+    BugNode* head = nullptr;
+    ```
+    What member variable does the `LinkedList` class use to keep track of the first node?
+19. **`src/LinkedList.h`**
+    ```
+    std::string comments[10];
+    int commentCount;
+    ```
+    How are bug comments stored in the `Bug` struct?
+20. **`src/main.cpp`**
+    ```
+    LinkedList list;
+    ```
+    What type of object is created at the start of the `main` function?
+21. **`src/main.cpp`**
+    ```
+    Bug b1 = {1, "2026-04-24", "Crash", "App crashes", "OPEN", "HIGH", "Needs fix"};
+    ```
+    What information is assigned to `b1` upon initialization?
+22. **`src/main.cpp`**
+    ```
+    list.addBug(b1);
+    list.addBug(b2);
+    list.addBug(b3);
+    list.addBug(b4);
+    list.addBug(b5);
+    ```
+    What happens to the list after these five calls to `addBug`?
+23. **`src/main.cpp`**
+    ```
+    list.sortById();
+    ```
+    What operation is performed on the list before displaying bugs sorted by ID?
+24. **`src/main.cpp`**
+    ```
+    list.deleteBug(3);
+    ```
+    What does this line attempt to do to the linked list?
+25. **`src/main.cpp`**
+    ```
+    Bug* found = list.searchBug(2);
+    if (found) {
+        std::cout << "\nFound Bug ID 2:\n";
+        std::cout << found->briefDesc << std::endl;
+    }
+    ```
+    What bug information is printed if a bug with ID 2 is found?
 
-## Analysis
+## Comprehension
 
-_These questions require you to trace execution, reason about logic, or identify possible issues._
+_These questions ask you to explain why or how particular choices in your code work the way they do._
 
-36. **`src/LinkedList.cpp`**
+26. **`src/LinkedList.cpp`**
+    ```
+    BugNode* node = new BugNode;
+    node->data = bug;
+    node->next = nullptr;
+    ```
+    Why do you create a new `BugNode` and set its `next` to `nullptr` before adding it to the list in `addBug`?
+27. **`src/LinkedList.cpp`**
     ```
     delete current;
     ```
-    What could happen if `deleteBug` is called with an ID not present in the list?
-
-37. **`src/LinkedList.cpp`**
+    Why is it necessary to explicitly delete nodes in the destructor rather than relying on automatic memory management?
+28. **`src/LinkedList.cpp`**
     ```
-    Bug* LinkedList::searchBug(int bugId)
+    while (current != nullptr && current->data.id != bugId) {
+        prev = current;
+        current = current->next;
+    }
     ```
-    What happens if you call `searchBug` on an empty list?
-
-38. **`src/LinkedList.cpp`**
+    How does this loop help locate the node to be deleted, and why is `prev` tracked?
+29. **`src/LinkedList.cpp`**
+    ```
+    return &current->data;
+    ```
+    Why does `searchBug` return a pointer to the bug data instead of the node itself or a copy?
+30. **`src/LinkedList.cpp`**
     ```
     for (int i = 0; i < current->data.commentCount; i++) {
         std::cout << "Comment " << i + 1 << ": "
                   << current->data.comments[i] << std::endl;
     }
     ```
-    How would the output change if `commentCount` is incorrectly set higher than the actual number of comments?
-
-39. **`src/LinkedList.cpp`**
+    How does this loop ensure that only valid comments are displayed for each bug?
+31. **`src/LinkedList.cpp`**
+    ```
+    do {
+        swapped = false;
+        BugNode* current = head;
+        while (current->next != nullptr) {
+            if (current->data.id > current->next->data.id) {
+                Bug temp = current->data;
+                current->data = current->next->data;
+                current->next->data = temp;
+                swapped = true;
+            }
+            current = current->next;
+        }
+    }while (swapped);
+    ```
+    Why do you use a do-while loop for the sorting methods instead of a single pass?
+32. **`src/LinkedList.cpp`**
+    ```
+    Bug temp = current->data;
+    current->data = current->next->data;
+    current->next->data = temp;
+    ```
+    Why do you swap the `data` field of nodes instead of rearranging the nodes themselves during sorting?
+33. **`src/LinkedList.cpp`**
+    ```
+    getline(ss, token, '|');
+    bug.id = stoi(token);
+    ```
+    Why do you read the first token and convert it to an integer in `loadFromFile`?
+34. **`src/LinkedList.cpp`**
     ```
     while (getline(ss, comment, '|')) {
         if (comment.empty()) break;
+        if (bug.commentCount < 10) {
+            bug.comments[bug.commentCount++] = comment;
+        }
+    }
     ```
-    What happens if a bug in the file has no comments between the last field and the `||` marker?
-
-40. **`src/LinkedList.cpp`**
-    ```
-    BugNode* node = new BugNode;
-    node->data = bug;
-    node->next = nullptr;
-    ```
-    What happens if `addBug` is called repeatedly without deleting the list?
-
-41. **`src/LinkedList.cpp`**
-    ```
-    while (current->next != nullptr) {
-        if (current->data.id > current->next->data.id) {
-    ```
-    How does the sort algorithm behave if IDs are already sorted?
-
-42. **`src/LinkedList.cpp`**
-    ```
-    while (current->next != nullptr) {
-        if (current->data.status > current->next->data.status) {
-    ```
-    How does `sortByStatus` determine the order of bugs?
-
-43. **`src/LinkedList.cpp`**
-    ```
-    if (!head) return;
-    ```
-    What is the effect of calling `sortById` or `sortByStatus` on a single-node list?
-
-44. **`src/LinkedList.cpp`**
+    How does this loop ensure that no more than 10 comments are added, and what happens if the comment is empty?
+35. **`src/LinkedList.cpp`**
     ```
     file << current->data.id << "|"
+         << current->data.date << "|"
+         << current->data.briefDesc << "|"
+         << current->data.detailedDesc << "|"
+         << current->data.status << "|"
+         << current->data.severity << "|";
     ```
-    What could happen if a bug's field contains the `|` character?
-
-45. **`src/LinkedList.cpp`**
+    Why is each bug field separated by a `|` when saving to file?
+36. **`src/LinkedList.cpp`**
     ```
-    bug.comments[bug.commentCount++] = comment;
+    file << "||\n";
     ```
-    What happens if a bug in the file has more than 10 comments?
-
-46. **`src/LinkedList.cpp`**
+    Why is `||\n` written at the end of each bug entry in the output file?
+37. **`src/LinkedList.h`**
     ```
-    head = nullptr;
+    std::string comments[10];
+    int commentCount;
     ```
-    What is the effect of setting `head` to nullptr in the destructor?
-
-47. **`src/main.cpp`**
+    Why does the `Bug` struct use a fixed-size array for comments and an integer for the count?
+38. **`src/LinkedList.h`**
+    ```
+    BugNode* next;
+    ```
+    What role does the `next` pointer play in the `BugNode` struct?
+39. **`src/LinkedList.h`**
+    ```
+    void sortByStatus();
+    ```
+    How does `sortByStatus` determine the sorting order for bugs in the list?
+40. **`src/main.cpp`**
+    ```
+    list.loadFromFile("../docs/bugFile.txt");
+    ```
+    Why does the program load bugs from a file before adding new bugs in `main`?
+41. **`src/main.cpp`**
+    ```
+    Bug b1 = {1, "2026-04-24", "Crash", "App crashes", "OPEN", "HIGH", "Needs fix"};
+    ```
+    Why does the bug initialization list specify fields in a particular order?
+42. **`src/main.cpp`**
+    ```
+    list.sortById();
+    std::cout << "\nSorted by ID:\n";
+    list.display();
+    ```
+    Why is `display` called after sorting by ID, and what would happen if it was called before sorting?
+43. **`src/main.cpp`**
     ```
     Bug* found = list.searchBug(2);
+    if (found) {
+        std::cout << "\nFound Bug ID 2:\n";
+        std::cout << found->briefDesc << std::endl;
+    }
     ```
-    What value will `found` have if no bug with ID 2 exists?
-
-48. **`src/main.cpp`**
+    Why is the result of `searchBug` checked before printing the bug description?
+44. **`src/main.cpp`**
     ```
     list.saveToFile("../output/bugFile.txt");
     ```
-    What will the output file contain if the list is empty when `saveToFile` is called?
+    Why is the list saved to a file at the end of the `main` function?
 
-49. **`src/main.cpp`**
+## Analysis
+
+_These questions require tracing execution, reasoning about logic, or identifying issues in the code._
+
+45. **`src/LinkedList.cpp`**
     ```
-    list.deleteBug(3);
+    Bug b1 = {1, "2026-04-24", "Crash", "App crashes", "OPEN", "HIGH", "Needs fix"};
     ```
-    What happens if you try to delete a bug that was already deleted in a previous operation?
-
-## Evaluation
-
-_These questions ask you to judge design decisions, tradeoffs, or rationale._
-
+    If only a single string is specified for `comments` in this initialization, how does the code handle the rest of the array and `commentCount`?
+46. **`src/LinkedList.cpp`**
+    ```
+    BugNode* current = head;
+    while (current != nullptr) {
+        BugNode* next = current->next;
+        delete current;
+        current = next;
+    }
+    ```
+    What would happen if a node in the list pointed to itself instead of `nullptr`?
+47. **`src/LinkedList.cpp`**
+    ```
+    while (current->next != nullptr) {
+        current = current->next;
+    }
+    current->next = node;
+    ```
+    What is the time complexity of adding a bug to the end of the list, and how does it scale with the list's size?
+48. **`src/LinkedList.cpp`**
+    ```
+    Bug* LinkedList::searchBug(int bugId)
+    ```
+    How does the `searchBug` method behave if there are multiple bugs with the same ID in the list?
+49. **`src/LinkedList.cpp`**
+    ```
+    if (current == nullptr) {
+        return nullptr;
+    }
+    ```
+    How does the `searchBug` method communicate failure to find a bug, and how is this handled in `main`?
 50. **`src/LinkedList.cpp`**
     ```
     Bug temp = current->data;
     current->data = current->next->data;
     current->next->data = temp;
     ```
-    What are the implications of sorting by swapping bug data rather than linked list nodes in terms of performance and memory usage?
+    What are the potential drawbacks of swapping bug data instead of nodes, especially regarding pointers or references to bugs elsewhere in the code?
+51. **`src/LinkedList.cpp`**
+    ```
+    while (getline(ss, comment, '|')) {
+        if (comment.empty()) break;
+        if (bug.commentCount < 10) {
+            bug.comments[bug.commentCount++] = comment;
+        }
+    }
+    ```
+    What happens if the input file contains more than 10 comments for a bug?
+52. **`src/LinkedList.cpp`**
+    ```
+    file << "||\n";
+    ```
+    How does this output affect the loading logic when reading from the file?
+53. **`src/LinkedList.h`**
+    ```
+    BugNode* head = nullptr;
+    ```
+    If multiple lists are created, how does each list maintain its own set of bugs?
+54. **`src/main.cpp`**
+    ```
+    list.deleteBug(3);
+    ```
+    What happens to the memory and pointers in the list when bug ID 3 is deleted?
+55. **`src/main.cpp`**
+    ```
+    list.sortByStatus();
+    ```
+    If multiple bugs have the same status, how are they ordered after sorting?
+
+## Evaluation
+
+_These questions ask you to judge design decisions, tradeoffs, or rationale in the code._
+
+56. **`src/LinkedList.cpp`**
+    ```
+    BugNode* node = new BugNode;
+    ```
+    What are the benefits and risks of using dynamic memory allocation for each node in the linked list?
+57. **`src/LinkedList.cpp`**
+    ```
+    Bug temp = current->data;
+    current->data = current->next->data;
+    current->next->data = temp;
+    ```
+    What are the tradeoffs between swapping bug data versus rearranging node pointers during sorting?
+58. **`src/LinkedList.cpp`**
+    ```
+    std::string comments[10];
+    ```
+    How does using a fixed-size array for comments impact flexibility and memory usage compared to using a dynamic container?
+59. **`src/LinkedList.cpp`**
+    ```
+    void sortById();
+    void sortByStatus();
+    ```
+    What are the advantages and disadvantages of using bubble sort for sorting bugs in the linked list?
+60. **`src/LinkedList.cpp`**
+    ```
+    Bug* searchBug(int bugId);
+    ```
+    What are the implications of returning a pointer to internal data from `searchBug` for encapsulation and safety?
+61. **`src/LinkedList.cpp`**
+    ```
+    void loadFromFile(const std::string& filename);
+    ```
+    How might error handling in `loadFromFile` affect the robustness of the program, and what alternatives could improve it?
+62. **`src/LinkedList.cpp`**
+    ```
+    void saveToFile(const std::string& filename) const;
+    ```
+    What are the advantages of separating file input/output from the core list operations?
+63. **`src/LinkedList.h`**
+    ```
+    BugNode* head = nullptr;
+    ```
+    Why might you choose a singly linked list for this application instead of a doubly linked list?
+64. **`src/LinkedList.h`**
+    ```
+    struct Bug { ... };
+    ```
+    What benefits does using a struct for bug representation offer, and what limitations might arise?
+65. **`src/main.cpp`**
+    ```
+    LinkedList list;
+    ```
+    What design advantages does using a dedicated `LinkedList` class provide for managing bug reports?
 
 ---
 
