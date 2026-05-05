@@ -1,10 +1,9 @@
 ## Grill My Code
 
-> **Generated:** 2026-05-05 11:59:23 UTC
-> **Commits reviewed:** `22df531` → `28e3e46`
+> **Generated:** 2026-05-05 12:44:38 UTC
+> **Commits reviewed:** `22df531` → `51c7794`
 
-> **Files assessed:** `.gitignore`, `.idea/.gitignore`, `.idea/.name`, `.idea/Assignment 4.iml`, `.idea/editor.xml`, `.idea/misc.xml`, `.idea/modules.xml`, `.idea/vcs.xml`, `CMakeLists.txt`, `output/.keep`, `src/main.cpp`
-> **⚠️ Note:** The content was truncated — questions may not cover all changes.
+> **Files assessed:** `src/main.cpp`
 
 ---
 
@@ -12,321 +11,320 @@
 
 _These questions check your knowledge of what specific parts of your code do._
 
-1. **`.gitignore`**
+1. **`src/main.cpp`**
    ```
-   /cmake-build-debug/
+   #include <iostream>
    ```
-   What is the effect of adding `/cmake-build-debug/` to the `.gitignore` file in your project?
+   What is the purpose of including `<iostream>` at the top of your file?
 
-2. **`.idea/.gitignore`**
+2. **`src/main.cpp`**
    ```
-   /workspace.xml
+   using namespace std;
    ```
-   What is the purpose of ignoring `workspace.xml` in the `.idea/.gitignore`?
+   What effect does `using namespace std;` have on subsequent code?
 
-3. **`.idea/.name`**
+3. **`src/main.cpp`**
    ```
-   Supplemental
+   int main() {
    ```
-   What does the value `Supplemental` represent in the `.idea/.name` file?
+   What is the role of the `main` function in a C++ program?
 
-4. **`.idea/Assignment 4.iml`**
+4. **`src/main.cpp`**
    ```
-   <module classpath="CIDR" type="CPP_MODULE" version="4" />
+   cout << "Hello World!" << endl;
    ```
-   What type of module is specified by `type="CPP_MODULE"` in the assignment's `.iml` file?
+   What does this line output to the console?
 
-5. **`.idea/editor.xml`**
+5. **`src/main.cpp`**
    ```
-   <option name="/Default/CodeStyle/CodeFormatting/CppClangFormat/EnableClangFormatSupport/@EntryValue" value="false" type="bool" />
+   return 0;
    ```
-   What does setting `"EnableClangFormatSupport"` to `false` do for your C++ code formatting?
+   What does the `return 0;` statement signify at the end of `main`?
 
-6. **`.idea/editor.xml`**
+6. **`src/main.cpp`**
    ```
-   <option name="/Default/CodeStyle/Naming/CppNaming/Rules/=Enums/@EntryIndexedValue" value="...AA_BB..." type="string" />
+   cout << "Hello World!" << endl;
    ```
-   What naming style is applied to enums according to this code style configuration?
+   What is the function of `endl` in this output statement?
 
-7. **`.idea/editor.xml`**
+7. **`src/main.cpp`**
    ```
-   <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/ALIGN_MULTILINE_EXPRESSION_BRACES/@EntryValue" value="true" type="bool" />
+   cout << "Hello World!" << endl;
    ```
-   What effect does setting `ALIGN_MULTILINE_EXPRESSION_BRACES` to `true` have on code formatting?
+   What type of operator is `<<` in this context?
 
-8. **`CMakeLists.txt`**
+8. **`src/main.cpp`**
    ```
-   [content truncated]
+   int main() {
    ```
-   What is the primary role of the `CMakeLists.txt` file in your project?
+   What type of value does `main` return?
 
-9. **`output/.keep`**
+9. **`src/main.cpp`**
    ```
-   [content truncated]
+   cout
    ```
-   What is the purpose of the `.keep` file inside the `output` directory?
+   What is `cout` and where is it defined?
 
 10. **`src/main.cpp`**
     ```
-    [content truncated]
+    #include <iostream>
     ```
-    What kind of source code is typically found in `src/main.cpp`?
+    Which library does `#include <iostream>` make available for your code?
+
+11. **`src/main.cpp`**
+    ```
+    using namespace std;
+    ```
+    How does `using namespace std;` affect the way you reference `cout`?
+
+12. **`src/main.cpp`**
+    ```
+    return 0;
+    ```
+    What does the operating system interpret when `main` returns 0?
+
 
 ## Comprehension
 
 _These questions ask you to explain why or how particular choices in your code work the way they do._
 
-11. **`.gitignore`**
+13. **`src/main.cpp`**
     ```
-    /cmake-build-debug/
+    #include <iostream>
     ```
-    Why did you decide to ignore the entire `cmake-build-debug` directory in your `.gitignore` file?
+    Why is `<iostream>` included rather than another header like `<stdio.h>`?
 
-12. **`.idea/.gitignore`**
+14. **`src/main.cpp`**
     ```
-    /shelf/
+    using namespace std;
     ```
-    What is the rationale behind ignoring the `/shelf/` directory in the context of JetBrains IDEs?
+    Why might you choose to use `using namespace std;` instead of prefixing `cout` and `endl` with `std::`?
 
-13. **`.idea/editor.xml`**
+15. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/PLACE_ELSE_ON_NEW_LINE/@EntryValue" value="false" type="bool" />
+    int main() {
     ```
-    Why might you prefer to set `PLACE_ELSE_ON_NEW_LINE` to `false` for your C++ formatting style?
+    Why must the `main` function be present in every C++ program?
 
-14. **`.idea/editor.xml`**
+16. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/INDENT_CASE_FROM_SWITCH/@EntryValue" value="true" type="bool" />
+    cout << "Hello World!" << endl;
     ```
-    How does enabling `INDENT_CASE_FROM_SWITCH` affect the readability of switch statements?
+    Why is `endl` used here instead of `'\n'` for a newline?
 
-15. **`.idea/Assignment 4.iml`**
+17. **`src/main.cpp`**
     ```
-    <module classpath="CIDR" type="CPP_MODULE" version="4" />
+    return 0;
     ```
-    Why is the `classpath` attribute set to `"CIDR"` for this module?
+    Why is `return 0;` considered standard practice at the end of the `main` function?
 
-16. **`.idea/editor.xml`**
+18. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/Naming/CppNaming/Rules/=Global_0020constants/@EntryIndexedValue" value="...AA_BB..." type="string" />
+    cout << "Hello World!" << endl;
     ```
-    Why did you choose the `AA_BB` naming style for global constants?
-
-17. **`.idea/editor.xml`**
-    ```
-    <option name="/Default/CodeStyle/EditorConfig/EnableClangFormatSupport/@EntryValue" value="false" type="bool" />
-    ```
-    Why is `EnableClangFormatSupport` set to `false` and what implication does this have on formatting?
-
-18. **`.idea/editor.xml`**
-    ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/SPACE_BEFORE_INITIALIZER_BRACES/@EntryValue" value="true" type="bool" />
-    ```
-    How does enabling `SPACE_BEFORE_INITIALIZER_BRACES` affect variable initialization syntax?
+    How does the chaining of `<<` operators allow you to build the output stream?
 
 19. **`src/main.cpp`**
     ```
-    [content truncated]
+    int main() {
     ```
-    Why is `main.cpp` usually chosen as the entry point for a C++ project?
+    Why is the return type of `main` `int` instead of `void`?
 
-20. **`.idea/editor.xml`**
+20. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/CONTINUOUS_LINE_INDENT/@EntryValue" value="Double" type="string" />
+    #include <iostream>
     ```
-    What is the reason for setting `CONTINUOUS_LINE_INDENT` to `Double` in this configuration?
+    Why do you need to include the header for input and output streams when using `cout`?
+
+21. **`src/main.cpp`**
+    ```
+    cout << "Hello World!" << endl;
+    ```
+    How does the output stream know where to send the characters?
+
+22. **`src/main.cpp`**
+    ```
+    int main() {
+    ```
+    How does the signature of `main` relate to program startup in C++?
+
+23. **`src/main.cpp`**
+    ```
+    cout << "Hello World!" << endl;
+    ```
+    How does this statement ensure that the string is immediately flushed to the console?
+
+24. **`src/main.cpp`**
+    ```
+    using namespace std;
+    ```
+    Why might `using namespace std;` lead to naming conflicts in larger programs?
+
 
 ## Analysis
 
-_These questions require tracing execution, reasoning about logic, or identifying issues in the code._
+_These questions require tracing execution, reasoning about logic, or identifying issues._
 
-21. **`.idea/editor.xml`**
+25. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/FUNCTION_DECLARATION_RETURN_TYPE_STYLE/@EntryValue" value="ON_SINGLE_LINE" type="string" />
+    cout << "Hello World!" << endl;
     ```
-    How would changing `FUNCTION_DECLARATION_RETURN_TYPE_STYLE` from `"ON_SINGLE_LINE"` to another value impact the formatting of multi-line function declarations?
+    What would happen if `endl` were omitted from this statement?
 
-22. **`.idea/editor.xml`**
+26. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/PLACE_CATCH_ON_NEW_LINE/@EntryValue" value="false" type="bool" />
+    using namespace std;
     ```
-    If you later decide to set `PLACE_CATCH_ON_NEW_LINE` to `true`, what changes would you expect in the appearance of try-catch blocks?
+    What would the code look like if `using namespace std;` were not included?
 
-23. **`.idea/editor.xml`**
+27. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/Naming/CppNaming/Rules/=Classes_0020and_0020structs/@EntryIndexedValue" value="...AaBb..." type="string" />
+    #include <iostream>
     ```
-    What would be the effect on class and struct naming if you changed the style from `AaBb` to `aa_bb`?
+    What error would you encounter if `<iostream>` were not included and you tried to use `cout`?
 
-24. **`.idea/editor.xml`**
+28. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/TYPE_DECLARATION_BRACES/@EntryValue" value="END_OF_LINE" type="string" />
+    int main() {
     ```
-    What formatting difference would occur if `TYPE_DECLARATION_BRACES` were changed to `"NEXT_LINE"` instead of `"END_OF_LINE"`?
+    What would happen if you changed the return type of `main` from `int` to `void`?
 
-25. **`.idea/editor.xml`**
+29. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/KEEP_BLANK_LINES_IN_CODE/@EntryValue" value="1" type="long" />
+    cout << "Hello World!" << endl;
     ```
-    How would increasing the value of `KEEP_BLANK_LINES_IN_CODE` affect the structure of your code files?
+    If you replaced `cout` with `cerr`, where would the output appear?
 
-26. **`.idea/editor.xml`**
+30. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/PLACE_WHILE_ON_NEW_LINE/@EntryValue" value="false" type="bool" />
+    return 0;
     ```
-    What does setting `PLACE_WHILE_ON_NEW_LINE` to `false` do to the formatting of do-while loops?
+    How would the behavior of your program change if you returned a value other than 0 from `main`?
 
-27. **`.idea/.name`**
+31. **`src/main.cpp`**
     ```
-    Supplemental
+    cout << "Hello World!" << endl;
     ```
-    How would the `.idea/.name` value affect the project name as seen in your IDE?
+    How would the output change if you replaced `"Hello World!"` with an integer value?
 
-28. **`.idea/editor.xml`**
+32. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/NAMESPACE_DECLARATION_BRACES/@EntryValue" value="END_OF_LINE" type="string" />
+    cout << "Hello World!" << endl;
     ```
-    What visual change would you notice if you set `NAMESPACE_DECLARATION_BRACES` to `"NEXT_LINE"`?
+    What would happen if you tried to output a variable that wasn't defined?
 
-29. **`CMakeLists.txt`**
+33. **`src/main.cpp`**
     ```
-    [content truncated]
+    cout << "Hello World!" << endl;
     ```
-    If `CMakeLists.txt` did not exist, what build issues would you encounter in a CMake-based project?
+    How does the order of operands affect the output when using `<<` with `cout`?
 
-30. **`.idea/editor.xml`**
+34. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/CASE_BLOCK_BRACES/@EntryValue" value="END_OF_LINE" type="string" />
+    int main() {
     ```
-    What would happen to case block formatting in switch statements if you changed `CASE_BLOCK_BRACES` to `"NEXT_LINE"`?
+    What happens if the `main` function is missing from your C++ file?
+
+35. **`src/main.cpp`**
+    ```
+    cout << "Hello World!" << endl;
+    ```
+    What would happen if you replaced `cout` with `cin` on this line?
+
+36. **`src/main.cpp`**
+    ```
+    #include <iostream>
+    ```
+    If you included `<iostream>` but didn't use any input/output statements, how would that affect compilation?
+
+37. **`src/main.cpp`**
+    ```
+    using namespace std;
+    ```
+    How might the inclusion of `using namespace std;` affect code readability for someone unfamiliar with the standard library?
+
+38. **`src/main.cpp`**
+    ```
+    int main() {
+    ```
+    If you added parameters to `main`, such as `int main(int argc, char* argv[])`, what extra capabilities would this provide?
+
+39. **`src/main.cpp`**
+    ```
+    cout << "Hello World!" << endl;
+    ```
+    If an exception occurred during this output statement, how would your program handle it?
+
+40. **`src/main.cpp`**
+    ```
+    cout << "Hello World!" << endl;
+    ```
+    What happens if you chain multiple `<<` operators in a single statement?
+
 
 ## Evaluation
 
-_These questions require you to judge design decisions, tradeoffs, or rationale in your code._
+_These questions ask you to judge design decisions, tradeoffs, or rationale._
 
-31. **`.gitignore`**
+41. **`src/main.cpp`**
     ```
-    /cmake-build-debug/
+    using namespace std;
     ```
-    What are the potential risks or advantages of ignoring the `cmake-build-debug` directory versus including it in version control?
+    What are the potential risks and benefits of using `using namespace std;` globally in your source file?
 
-32. **`.idea/.gitignore`**
+42. **`src/main.cpp`**
     ```
-    /workspace.xml
+    cout << "Hello World!" << endl;
     ```
-    Why might it be problematic to track `workspace.xml` in a shared repository?
+    Why might you choose to use `cout` and `endl` for output rather than C-style functions like `printf`?
 
-33. **`.idea/editor.xml`**
+43. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/INDENT_GOTO_LABELS/@EntryValue" value="false" type="bool" />
+    #include <iostream>
     ```
-    What are the pros and cons of disabling indentation for goto labels in your codebase?
+    How does including `<iostream>` affect portability and compatibility across different compilers?
 
-34. **`.idea/editor.xml`**
+44. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/Naming/CppNaming/Rules/=Class_0020and_0020struct_0020fields/@EntryIndexedValue" value="...aa_bb..." type="string" />
+    int main() {
     ```
-    What could be the impact of using the `aa_bb` naming style for class and struct fields on team consistency?
+    Why do you think the C++ standard requires `main` to return an integer, and what might be the reasoning behind it?
 
-35. **`.idea/editor.xml`**
+45. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/LINE_BREAK_AFTER_INIT_STATEMENT/@EntryValue" value="ON_SINGLE_LINE" type="string" />
+    cout << "Hello World!" << endl;
     ```
-    What is the rationale for enforcing a line break after init statements only on single lines?
+    What are the advantages of using stream-based output versus direct system calls for printing?
 
-36. **`.idea/editor.xml`**
+46. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/INVOCABLE_DECLARATION_BRACES/@EntryValue" value="END_OF_LINE" type="string" />
+    return 0;
     ```
-    Why might you prefer to keep invocable declaration braces at the end of the line rather than on a new line?
+    Why is explicitly returning 0 from `main` considered good practice, even though some compilers don't require it?
 
-37. **`.idea/editor.xml`**
+47. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/TOPLEVEL_FUNCTION_DECLARATION_RETURN_TYPE_STYLE/@EntryValue" value="ON_SINGLE_LINE" type="string" />
+    using namespace std;
     ```
-    What are the tradeoffs of using `"ON_SINGLE_LINE"` for top-level function declaration return type style?
+    In what situations would you avoid using `using namespace std;` in your code, and why?
 
-38. **`.idea/editor.xml`**
+48. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/INT_ALIGN_ENUM_INITIALIZERS/@EntryValue" value="true" type="bool" />
+    cout << "Hello World!" << endl;
     ```
-    What benefits does aligning enum initializers provide in terms of code readability?
+    What are the trade-offs between using `endl` and `'\n'` for line breaks in output?
 
-39. **`.idea/editor.xml`**
+49. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/INT_ALIGN_BITFIELD_SIZES/@EntryValue" value="true" type="bool" />
+    int main() {
     ```
-    Why might you choose to align bitfield sizes in your C++ code formatting rules?
+    If you were writing code for embedded systems, how might the structure of your `main` function differ?
 
-40. **`.idea/editor.xml`**
+50. **`src/main.cpp`**
     ```
-    <option name="/Default/CodeStyle/CppIncludeDirective/SortIncludeDirectives/@EntryValue" value="true" type="bool" />
+    #include <iostream>
     ```
-    What are the advantages of automatically sorting include directives in your codebase?
-
-## Broader Questions
-
-_These questions focus on underlying concepts, patterns, or technologies evident in the code._
-
-41. **`.gitignore`**
-    ```
-    /cmake-build-debug/
-    ```
-    How does `.gitignore` contribute to maintaining a clean repository in collaborative development?
-
-42. **`.idea/editor.xml`**
-    ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/ENABLE_CLANG_FORMAT_SUPPORT/@EntryValue" value="false" type="bool" />
-    ```
-    How does using ClangFormat support compare with relying solely on IDE formatting options for C++?
-
-43. **`.idea/editor.xml`**
-    ```
-    <option name="/Default/CodeStyle/Naming/CppNaming/Rules/=Global_0020constants/@EntryIndexedValue" value="...AA_BB..." type="string" />
-    ```
-    What are the advantages of enforcing a consistent naming convention for global constants across a C++ project?
-
-44. **`.idea/.name`**
-    ```
-    Supplemental
-    ```
-    What considerations should you make when naming a project in your IDE, as seen in `.idea/.name`?
-
-45. **`CMakeLists.txt`**
-    ```
-    [content truncated]
-    ```
-    How does CMake facilitate cross-platform builds in C++ projects?
-
-46. **`.idea/editor.xml`**
-    ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/INDENT_CASE_FROM_SWITCH/@EntryValue" value="true" type="bool" />
-    ```
-    What is the impact of code indentation settings on long-term maintainability?
-
-47. **`.idea/editor.xml`**
-    ```
-    <option name="/Default/CodeStyle/CodeFormatting/CppFormatting/KEEP_BLANK_LINES_IN_CODE/@EntryValue" value="1" type="long" />
-    ```
-    How do blank lines in code affect readability and version control diffs?
-
-48. **`output/.keep`**
-    ```
-    [content truncated]
-    ```
-    Why might you include a `.keep` file in an otherwise empty directory in a version-controlled project?
-
-49. **`.idea/editor.xml`**
-    ```
-    <option name="/Default/CodeStyle/Naming/CppNamingOptions/Rules/=1F7C125967075E47BA390ACED6DBF37C/@EntryIndexedValue" value="...Common Variables..." type="string" />
-    ```
-    How do naming conventions for common variables differ from those used for constants or types?
-
-50. **`.idea/editor.xml`**
-    ```
-    <option name="/Default/CodeStyle/Naming/CppNaming/Rules/=Unions/@EntryIndexedValue" value="...AaBb..." type="string" />
-    ```
-    Why is it important to distinguish naming conventions for union members from those for struct fields or classes?
+    How does the choice of including specific headers impact compile-time and binary size in simple programs like this?
 
 ---
 
